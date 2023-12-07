@@ -17,15 +17,15 @@ struct sbiret sbi_call(long arg0, long arg1, long arg2, long arg3, long arg4, lo
   register long a7 __asm__("a7") = eid; 
 
   __asm__ __volatile__("ecall"
-                        : "=r"(a0), "=r"(a1)
-                        : "r"(a0), "r"(a1), "r"(a2), "r"(a3), "r"(a4), "r"(a5), "r"(a6), "r"(a7)
-                        : "memory");
+                        : "=r"(a0), "=r"(a1)      // 出力オペランド
+                        : "r"(a0), "r"(a1), "r"(a2), "r"(a3), "r"(a4), "r"(a5), "r"(a6), "r"(a7) // 入力オペランド
+                        : "memory");     // メモリ領域が変更される
 
   return (struct sbiret){.error = a0, .value = a1};
 }
 
 void putchar(char ch) {
-  sbi_call(ch, 0, 0, 0, 0, 0, 0, 1); // console putchar
+  sbi_call(ch, 0, 0, 0, 0, 0, 0, 1); // console putchar (eid=0x01)
 }
 
 void *memset(void *buf, char c, size_t n) {
