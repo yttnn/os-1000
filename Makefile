@@ -9,7 +9,9 @@ CFLAGS = -c -std=c11 -O2 -g3 -Wall -Wextra --target=riscv32 \
 LDFLAGS = -m elf32lriscv -L/lib -Tkernel.ld -Map=kernel.map
 
 .PHONY: kernel
-kernel: 
+kernel: $(SRCS) kernel.ld
+			$(CC) $(CFLAGS) $(SRCS)
+			$(LINKER) $(LDFLAGS) $(OBJS) -o kernel.elf
 
 .PHONY: clean
 clean:
