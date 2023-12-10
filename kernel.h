@@ -55,6 +55,8 @@ struct trap_frame {
     while (1) {}                                                           \
   } while (0)                                                              
 
+#define PAGE_SIZE 4096
+
 struct sbiret {
   long error;
   long value;
