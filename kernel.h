@@ -56,6 +56,16 @@ struct trap_frame {
   } while (0)                                                              
 
 #define PAGE_SIZE 4096
+#define PROCS_MAX 8 // max process
+#define PROC_UNUSED 0
+#define PROC_RUNNABLE 1
+
+struct process {
+  int pid;
+  int state;
+  vaddr_t sp;
+  uint8_t stack[8192];
+};
 
 struct sbiret {
   long error;
