@@ -150,6 +150,8 @@ void yield(void) {
   switch_context(&prev->sp, &next->sp);
 }
 
+void map_page()
+
 __attribute__((naked))
 __attribute__((aligned(4)))
 void kernel_entry(void) {

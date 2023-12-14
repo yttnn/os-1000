@@ -60,6 +60,13 @@ struct trap_frame {
 #define PROC_UNUSED 0
 #define PROC_RUNNABLE 1
 
+#define SATP_SV32 (lu << 31)
+#define PAGE_V    (1 << 0)
+#define PAGE_R    (1 << 1)
+#define PAGE_W    (1 << 2)
+#define PAGE_X    (1 << 3)
+#define PAGE_U    (1 << 4)
+
 struct process {
   int pid;
   int state;
