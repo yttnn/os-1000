@@ -39,10 +39,25 @@ void putchar(char ch) {
   sbi_call(ch, 0, 0, 0, 0, 0, 0, 1); // console putchar (eid=0x01)
 }
 
+long getchar(void) {
+  struct sbiret ret = sbi_call(0, 0, 0, 0, 0, 0, 0, 2);
+  return ret.error;
+}
+
 void handle_syscall(struct trap_frame *f) {
   switch (f->a3) {
     case SYS_PUTCHAR:
       putchar(f->a0);
+      break;
+    case SYS_GETCHAR:
+      while (1) {
+        long ch = getchar();
+        if (ch >= 0) {
+          f->a0 = ch;
+          break;
+        }
+        yield();
+      }
       break;
     default:
       PANIC("unexpected syscall a3=%x\n", f->a3);
