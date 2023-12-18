@@ -59,6 +59,7 @@ struct trap_frame {
 #define PROCS_MAX 8 // max process
 #define PROC_UNUSED 0
 #define PROC_RUNNABLE 1
+#define PROC_EXITED   2
 
 #define SATP_SV32 (1u << 31)
 #define PAGE_V    (1 << 0)
