@@ -3,6 +3,7 @@
 
 void map_page(uint32_t *table1, uint32_t vaddr, paddr_t paddr, uint32_t flags);
 void user_entry(void);
+void yield(void);
 
 typedef unsigned char uint8_t;
 typedef unsigned int uint32_t;
