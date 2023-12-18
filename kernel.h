@@ -71,6 +71,8 @@ struct trap_frame {
 
 #define SSTATUS_SPIE (1 << 5)
 
+#define SCAUSE_ECALL 8
+
 struct process {
   int pid;
   int state;
